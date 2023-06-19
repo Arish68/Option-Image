@@ -1,0 +1,12 @@
+     {% assign is_img_exist = false %}
+      {% for variant_data in product.variants %}
+          {% assign variant_color = variant_data.title | split: "/" %}
+          {% if  variant_color[0] contains  value  %}
+           <img data_index="{{ variant_data.title }}" src="{{ variant_data.image | img_url: '50x' }}" alt="{{ variant_data.image.alt | escape }}">
+           {% assign is_img_exist = true %}
+            {% break %}
+          {% endif %}
+      {% endfor %}
+      {% unless is_img_exist %}
+      {{ value -}}
+      {% endunless %}
